@@ -200,6 +200,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<Tab>', ':tabn<CR>', { silent = true })
 vim.keymap.set('n', '<S-Tab>', ':tabp<CR>', { silent = true })
+vim.keymap.set('n', '<leader>h', ':vs<CR>', { silent = true })
+vim.keymap.set('n', '<leader>v', ':sp<CR>', { silent = true })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -1032,3 +1034,13 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+require('toggleterm').setup{
+  open_mapping = [[<c-\>]],
+  size = 20,
+  winbar = {
+    enabled = false,
+    name_formatter = function(term)
+      return term.name
+    end
+  }
+}

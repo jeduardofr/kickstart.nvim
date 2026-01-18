@@ -26,6 +26,41 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = "*",
-    config = true
-  }
+    config = function ()
+      require('toggleterm').setup{
+        open_mapping = [[<c-\>]],
+        size = 20,
+        winbar = {
+          enabled = false,
+          name_formatter = function(term)
+            return term.name
+          end
+        }
+      }
+    end
+  },
+  {
+  "dzfrias/arena.nvim",
+    event = "BufWinEnter",
+    -- Calls `.setup()` automatically
+    config = true,
+  },
+  {
+    "kelly-lin/ranger.nvim",
+    config = function()
+      require("ranger-nvim").setup({ replace_netrw = true })
+      vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+        noremap = true,
+        callback = function()
+          require("ranger-nvim").open(true)
+        end,
+      })
+    end,
+  },
+  {
+    'tribela/transparent.nvim',
+    config = function ()
+      require('transparent').setup{}
+    end
+  },
 }
